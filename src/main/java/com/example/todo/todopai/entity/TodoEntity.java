@@ -26,7 +26,7 @@ public class TodoEntity {
 
     @Column(nullable = false,length = 30)
     private String title; //제목
-    private boolean done; //일정 완료 여부
+    private boolean done; //일정 완료 여부 (false 기본)
     @CreationTimestamp
     private LocalDateTime createDate; //등록 시간
 
