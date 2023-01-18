@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -70,9 +72,9 @@ public class TodoApiController {
 
     //할 일 목록 요청(GET)
     @GetMapping
-    public ResponseEntity<?> retrieveTodo()
+    public ResponseEntity<?> retrieveTodoList()
     {
-
+        log.info("/api/todos Get request!");
         try{
             TodoListResponseDTO responseDTO=todoService.retrieve();
             return ResponseEntity.ok().body(responseDTO);
@@ -84,19 +86,28 @@ public class TodoApiController {
     }
 
     //할 일 수정 요청(PUT, PATCH)
-    @PatchMapping("/{id}")
+    @RequestMapping(
+            value = "/{id}"
+            ,method = {RequestMethod.PUT,RequestMethod.PATCH}
+    )
     public ResponseEntity<?> updateTodo(
             @PathVariable("id") String todoId,
-            @Validated @RequestBody TodoModifyRequestDTO modifyRequestDTO
+            @Validated @RequestBody TodoModifyRequestDTO requestDTO
+            , BindingResult result
+            , HttpServletRequest request
     ){
-        log.info("/api/todos/ {} update request!",todoId);
-        log.info("수정할 할 일 : {}",modifyRequestDTO);
+        if(result.hasErrors()){
+            return ResponseEntity.badRequest()
+                    .body(result.getFieldError());
+        }
+        log.info("/api/todos/ {} {} request!",todoId,request.getMethod());
+        log.info("modifying dto : {}",requestDTO);
 
         try {
-            TodoListResponseDTO todoListResponseDTO=todoService.update(todoId,modifyRequestDTO);
+            TodoListResponseDTO responseDTO=todoService.update(todoId,requestDTO);
              return ResponseEntity
                     .ok()
-                    .body(modifyRequestDTO);
+                    .body(responseDTO);
         }
         catch (Exception e){
             return ResponseEntity
