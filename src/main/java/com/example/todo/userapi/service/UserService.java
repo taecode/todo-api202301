@@ -1,5 +1,7 @@
 package com.example.todo.userapi.service;
 
+import com.example.todo.security.TokenProvider;
+import com.example.todo.userapi.dto.LoginResponseDTO;
 import com.example.todo.userapi.dto.UserSignUpDTO;
 import com.example.todo.userapi.dto.UserSignUpResponseDTO;
 import com.example.todo.userapi.entity.UserEntity;
@@ -18,6 +20,8 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final TokenProvider tokenProvider;
 
     //회원가입 처리
     public UserSignUpResponseDTO create(final UserSignUpDTO userSignUpDTO){
@@ -50,7 +54,7 @@ public class UserService {
     }
 
     //로그인 검증
-    public UserEntity getByCredentials(
+    public LoginResponseDTO getByCredentials(
             final String email, final String rawPassword){
 
         //입력한 이메일을 통해 회원정보 조회
@@ -67,7 +71,10 @@ public class UserService {
 
         log.info("{}님 로그인 성공!",originalUser.getUserName());
 
-        return originalUser;
+        //로그인 성고 후 토큰 발급
+        String token = tokenProvider.createToken(originalUser);
+
+        return new LoginResponseDTO(originalUser,token);
 
 
     }
