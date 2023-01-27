@@ -28,10 +28,10 @@ public class TodoService {
 //        this.todoRepository = todoRepository;
 //    }
 
-    //할 일 목록 조회
+    // 할 일 목록 조회
     @Transactional
-    public TodoListResponseDTO retrieve(){
-        List<TodoEntity> entityList = todoRepository.findAll();
+    public TodoListResponseDTO retrieve(String userId) {
+        List<TodoEntity> entityList = todoRepository.findByUserId(userId);
 
         List<TodoDetailResponseDTO> dtoList = entityList.stream()
                 .map(TodoDetailResponseDTO::new)
@@ -42,18 +42,25 @@ public class TodoService {
                 .build();
     }
 
+
     //할 일 등록
-    public TodoListResponseDTO create(final TodoCreateRequestDTO createRequestDTO)
+    public TodoListResponseDTO create(
+            final TodoCreateRequestDTO createRequestDTO
+            ,final String userId
+    )
         throws RuntimeException
     {
-        todoRepository.save(createRequestDTO.toEntity());
-        log.info("할 일이 저장되었습니다. 제목 : {}",createRequestDTO.getTitle() );
-        return retrieve();
+        TodoEntity todo = createRequestDTO.toEntity();
+        todo.setUserId(userId); //전체 목록을 다 가져올 필요 없다.
+
+        todoRepository.save(todo);
+        log.info("할 일이 저장되었습니다. 제목 : {}",createRequestDTO.getTitle());
+        return retrieve(userId);
     }
 
     //할 일 수정(제목, 할 일 완료여부)
     public TodoListResponseDTO update(
-            final String id ,final TodoModifyRequestDTO modifyRequestDTO){
+            final String id ,final TodoModifyRequestDTO modifyRequestDTO,final String userId){
 
         Optional<TodoEntity> targetEntity = todoRepository.findById(id);
 
@@ -63,11 +70,11 @@ public class TodoService {
             todoRepository.save(entity);
         });
 
-        return retrieve();
+        return retrieve(userId);
     }
 
     //할 일 삭제
-    public  TodoListResponseDTO delete(final String id){
+    public  TodoListResponseDTO delete(final String id,final  String userId){
 
         try{
             todoRepository.deleteById(id);
@@ -77,7 +84,7 @@ public class TodoService {
             throw new RuntimeException("id가 존재하지 않아 삭제에 실패했습니다.");
             //클라이언트에 날릴 메시지
         }
-        return retrieve();
+        return retrieve(userId);
     }
 
 
