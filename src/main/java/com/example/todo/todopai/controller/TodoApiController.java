@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 @RequestMapping("/api/todos")
 //CORS 허용 설정
-@CrossOrigin  //(origins = {"http://localhost:5501"}) //이 포트 번호의 접속은 허용하겠다.
+//@CrossOrigin  //(origins = {"http://localhost:5501"}) //이 포트 번호의 접속은 허용하겠다.
 public class TodoApiController {
 
     private final TodoService todoService;
