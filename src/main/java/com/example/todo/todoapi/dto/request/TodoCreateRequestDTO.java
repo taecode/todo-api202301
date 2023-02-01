@@ -1,6 +1,6 @@
-package com.example.todo.todopai.dto.request;
+package com.example.todo.todoapi.dto.request;
 
-import com.example.todo.todopai.entity.TodoEntity;
+import com.example.todo.todoapi.entity.TodoEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

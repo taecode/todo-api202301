@@ -1,6 +1,6 @@
-package com.example.todo.todopai.dto.response;
+package com.example.todo.todoapi.dto.response;
 
-import com.example.todo.todopai.entity.TodoEntity;
+import com.example.todo.todoapi.entity.TodoEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package com.example.todo.todopai.repository;
+package com.example.todo.todoapi.repository;
 
-import com.example.todo.todopai.entity.TodoEntity;
+import com.example.todo.todoapi.entity.TodoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

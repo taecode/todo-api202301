@@ -1,19 +1,10 @@
-package com.example.todo.todopai.service;
+package com.example.todo.todoapi.service;
 
-import com.example.todo.todopai.dto.request.TodoCreateRequestDTO;
-import com.example.todo.todopai.dto.request.TodoModifyRequestDTO;
-import com.example.todo.todopai.dto.response.TodoDetailResponseDTO;
-import com.example.todo.todopai.dto.response.TodoListResponseDTO;
+import com.example.todo.todoapi.dto.request.TodoCreateRequestDTO;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Commit

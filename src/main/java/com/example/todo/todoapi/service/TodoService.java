@@ -1,14 +1,13 @@
-package com.example.todo.todopai.service;
+package com.example.todo.todoapi.service;
 
-import com.example.todo.todopai.dto.request.TodoCreateRequestDTO;
-import com.example.todo.todopai.dto.request.TodoModifyRequestDTO;
-import com.example.todo.todopai.dto.response.TodoDetailResponseDTO;
-import com.example.todo.todopai.dto.response.TodoListResponseDTO;
-import com.example.todo.todopai.entity.TodoEntity;
-import com.example.todo.todopai.repository.TodoRepository;
+import com.example.todo.todoapi.dto.request.TodoCreateRequestDTO;
+import com.example.todo.todoapi.dto.request.TodoModifyRequestDTO;
+import com.example.todo.todoapi.dto.response.TodoDetailResponseDTO;
+import com.example.todo.todoapi.dto.response.TodoListResponseDTO;
+import com.example.todo.todoapi.entity.TodoEntity;
+import com.example.todo.todoapi.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

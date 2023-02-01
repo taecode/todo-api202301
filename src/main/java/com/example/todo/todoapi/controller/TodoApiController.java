@@ -1,10 +1,10 @@
-package com.example.todo.todopai.controller;
+package com.example.todo.todoapi.controller;
 
 
-import com.example.todo.todopai.dto.request.TodoCreateRequestDTO;
-import com.example.todo.todopai.dto.request.TodoModifyRequestDTO;
-import com.example.todo.todopai.dto.response.TodoListResponseDTO;
-import com.example.todo.todopai.service.TodoService;
+import com.example.todo.todoapi.dto.request.TodoCreateRequestDTO;
+import com.example.todo.todoapi.dto.request.TodoModifyRequestDTO;
+import com.example.todo.todoapi.dto.response.TodoListResponseDTO;
+import com.example.todo.todoapi.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 @RequestMapping("/api/todos")
 //CORS 허용 설정
-@CrossOrigin  //(origins = {"http://localhost:5501"}) //이 포트 번호의 접속은 허용하겠다.
+//@CrossOrigin  //(origins = {"http://localhost:5501"}) //이 포트 번호의 접속은 허용하겠다.
 public class TodoApiController {
 
     private final TodoService todoService;

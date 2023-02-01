@@ -1,4 +1,4 @@
-package com.example.todo.todopai.dto.response;
+package com.example.todo.todoapi.dto.response;
 
 import lombok.*;
 
