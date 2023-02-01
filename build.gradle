@@ -2,14 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.7'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	//id 'war' //war 배포
 }
 
-//war{
-//	archiveName 'ROOT.war'
-//}
-//bootWar.enabled=false //내장 was를 비활성화
-//war.enabled=true
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -36,16 +30,17 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	//스프링 시큐리티 모듈
+	// 스프링 시큐리티 모듈
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
-	//json web token 라이브러리
+	// json web token 라이브러리
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
 }
 
 tasks.named('test') {
-	//useJUnitPlatform()
-	exclude '**/*' //빌드시에 테스트 생략, 지금 테스트 코드 개판이라 일단 생략하고 배포
+//	useJUnitPlatform()
+	exclude '**/*'    // 빌드시에 테스트 생략
 }
